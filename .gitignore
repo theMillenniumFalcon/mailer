@@ -130,4 +130,5 @@ dmypy.json
 
 # custom
 config.py
-data.csv 
+data.csv
+constants.py 

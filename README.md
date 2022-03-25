@@ -1,4 +1,4 @@
-# mass-mail
+# mailer
 Tool that sends custom emails to the masses
 
 ## Structure
@@ -9,7 +9,7 @@ Tool that sends custom emails to the masses
 \-- constants.py        constants including email body
 \-- email.py            script entry point
 \-- data.csv            data for each email
-\-- mass-mail.py        script entry point
+\-- mailer.py        script entry point
 \-- README.md           this document
 \-- requirements.txt    python pkg requirements
 
@@ -32,7 +32,8 @@ virtualenv env
 env\Scripts\activate
 pip install -r requirements.txt
 ```
-2. Next make sure that data.csv is filled out. Currently it contains a sample of what such a csv can look like. The first row of the csv should contain the column names that will be substituted in the body and subject line of the emails. Make sure that one of the columns is called "email" as it is required.
+2. Next create a data.csv file like the one shown below, and make sure that data.csv is filled out. Currently it contains a sample of what such a csv can look like. The first row of the csv should contain the column names that will be substituted in the body and subject line of the emails. Make sure that one of the columns is called "email" as it is required.
+<img align="center" width="300px" src="./data.png" />
 
 3. Replace constants.py with the appropriate email and subject line like how the template currently does it using an f-string. Note that formatting and line breaks here show up in the actual email.
 
@@ -42,6 +43,6 @@ pip install -r requirements.txt
 
 To run simply run one of the commands
 
-- ```python massmail.py -s``` prints 3 sample emails that will be sent to the console
-- ```python massmail.py -t``` sends 3 test emails to your email address
-- ```python massmail.py``` sends emails to all recepients
+- ```python mailer.py -s``` prints 3 sample emails that will be sent to the console
+- ```python mailer.py -t``` sends 3 test emails to your email address
+- ```python mailer.py``` sends emails to all recepients

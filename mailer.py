@@ -1,41 +1,28 @@
 import argparse
-import pandas
-from os import path
+from re import I
 
-data = None
-
-# parse data.csv
-def parse_data():
-    if not path.isfile("data.csv"):
-        raise Exception("data.csv does not exist")
-    df = pandas.read_csv("data.csv")
-    print(df)
-    print(len(df))
-
-# generates a sample email from data
-def generate_sample():
+# generates a sample mail from the data
+def generate():
     return
 
 # function for getting command line arguments
 def getOptions():
-    aparser = argparse.ArgumentParser(description="email parameters")
-    aparser.add_argument('-s', '--sample', required=False, type=bool, help='view sample emails')
-    aparser.add_argument('-t', '--test', required=False, type=bool, help='test email')
-    aparser.add_argument("-sample", action="store_true", help="view sample emails")
-    aparser.add_argument("-test", action="store_true", help="test email")
-    opts = vars( aparser.parse_args() )
-    return opts
+    parser = argparse.ArgumentParser(description = "email parameters")
+    parser.add_argument('-s', '--sample', required = False, type = bool, help = 'view sample emails')
+    parser.add_argument('-t', '--test', required = False, type = bool, help = 'test email')
 
+    opts = vars(parser.parse_args())
+
+    return opts
 
 def main():
     opts = getOptions()
+
     if opts["sample"]:
-        s = generate_sample()
         print("sample")
+    
     if opts["test"]:
-        # generate_test()
         print("test")
-
-
+    
 if __name__ == "__main__":
     main()

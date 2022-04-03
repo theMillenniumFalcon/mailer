@@ -18,6 +18,46 @@ password = None
 context = ssl.create_default_context()
 server = None   
 
+# Email class
+class Email:
+    '''class representing an email'''    
+
+    def __init__(self, recepient, subject, body):
+        '''Email constructor'''
+        self.recepient = recepient
+        self.subject = subject
+        self.body = body
+
+    def __str__(self):
+        '''returns a string representation of the email'''
+        return "----------------------\n" + \
+            f"Recipient: {self.recepient} \n\n" + \
+            f"Subject: {self.subject} \n\n" + \
+            f"Body: {self.body}\n" + \
+            "----------------------\n\n"
+
+    def send(self):
+        '''sends email using a mail object'''
+        global sender_email, server
+        msg = email.mime.multipart.MIMEMultipart()
+        msg['From'] = sender_email
+        msg['To'] = self.recepient
+        recipients = [self.recepient]
+        msg['Subject'] = self.subject
+        msg.attach(email.mime.text.MIMEText(self.body, 'plain'))
+        server.sendmail(sender_email, self.recepient, msg.as_string())
+
+    def send_test(self):
+        '''tests sends email using a mail object'''
+        global sender_email, server
+        msg = email.mime.multipart.MIMEMultipart()
+        msg['From'] = sender_email
+        msg['To'] = sender_email
+        recipients = [sender_email]
+        msg['Subject'] = self.subject
+        msg.attach(email.mime.text.MIMEText(self.body, 'plain'))
+        server.sendmail(sender_email, sender_email, msg.as_string())
+
 # parse data.csv
 def parse():
     global data
